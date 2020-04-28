@@ -21,6 +21,9 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("My Game")
 clock = pygame.time.Clock()
 
+# Setup Sprites
+all_sprites = pygame.sprite.Groups()
+
 # Game loop
 running = True
 
@@ -37,6 +40,7 @@ while running:
 
   # AFTER drawing everything, flip the display
   pygame.display.flip()
+  all_sprites.draw()
 
   # Keep game loop running at given FPS
   clock.tick(FPS)
