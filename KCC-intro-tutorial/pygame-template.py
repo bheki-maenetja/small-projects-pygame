@@ -2,10 +2,18 @@
 # Skeleton for a new project
 import pygame
 import random
+from os import path
 
+# Initialise pygame and create window
 WIDTH = 360
 HEIGHT = 480
 FPS = 30
+
+pygame.init()
+pygame.mixer.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("My Game")
+clock = pygame.time.Clock()
 
 # Useful colours
 BLACK = (0, 0, 0)
@@ -14,12 +22,8 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-# Initialise pygame and create window
-pygame.init()
-pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("My Game")
-clock = pygame.time.Clock()
+# Load all sprite images
+img_dir = path.join(path.dirname(__file__), 'img')
 
 # Setup Sprites
 all_sprites = pygame.sprite.Group()
