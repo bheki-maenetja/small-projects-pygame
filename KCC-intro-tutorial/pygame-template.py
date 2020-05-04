@@ -1,4 +1,5 @@
 # pylint: disable=no-member
+# pylint: disable=too-many-function-args
 # Skeleton for a new project
 import pygame
 import random
