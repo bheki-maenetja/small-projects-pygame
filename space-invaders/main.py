@@ -4,7 +4,7 @@
 # Skeleton for a new project
 import pygame
 from random import randint, choice
-from math import cos, sin
+from math import cos, sin, pi
 from os import path
 
 from pygame.locals import (
@@ -104,19 +104,23 @@ class Bullet(pygame.sprite.Sprite):
     self.rect.center = (x, y)
   
   def update(self):
-    angle = ((self.rot % 360) + 90) % 360
-    if 0 <= angle <= 90:
-      self.rect.centerx += 5 * abs(cos(angle))
-      self.rect.centery -= 5 * abs(sin(angle))
-    if 90 < angle <= 180:
-      self.rect.centerx -= 5 * abs(cos(angle))
-      self.rect.centery -= 5 * abs(sin(angle))
-    if 180 < angle <= 270:
-      self.rect.centerx -= 5 * abs(cos(angle))
-      self.rect.centery += 5 * abs(sin(angle))
-    if 270 < angle <= 360:
-      self.rect.centerx += 5 * abs(cos(angle))
-      self.rect.centery += 5 * abs(sin(angle))
+    angle_deg = ((self.rot % 360) + 90) % 360
+    angle_rad = (angle_deg / 180) * pi
+    horizontal_vector = abs(8 * round(cos(angle_rad), 4))
+    vertical_vector = abs(8 * round(sin(angle_rad), 4))
+    print(round(sin(angle_rad), 4), round(cos(angle_rad), 4))
+    if 0 <= angle_deg <= 90:
+      self.rect.centerx += horizontal_vector
+      self.rect.centery -= vertical_vector
+    if 90 < angle_deg <= 180:
+      self.rect.centerx -= horizontal_vector
+      self.rect.centery -= vertical_vector
+    if 180 < angle_deg <= 270:
+      self.rect.centerx -= horizontal_vector
+      self.rect.centery += vertical_vector
+    if 270 < angle_deg <= 360:
+      self.rect.centerx += horizontal_vector
+      self.rect.centery += vertical_vector
     
     self.boundary_check()
   
@@ -124,9 +128,46 @@ class Bullet(pygame.sprite.Sprite):
     if self.rect.top < 0 or self.rect.bottom > HEIGHT or self.rect.left < 0 or self.rect.right > WIDTH:
       self.kill()
 
-player = Player()
+class Alien(pygame.sprite.Sprite):
+  def __init__(self):
+    super(Alien, self).__init__()
+    self.image = pygame.Surface((30, 30))
+    self.image.fill(GREEN)
+    self.rect = self.image.get_rect()
+    self.direction = choice(['left', 'right', 'top', 'bottom'])
+    self.spawn()
+  
+  def spawn(self):
+    if (self.direction == 'left'):
+      x, y = randint(-100, -5), randint(0, HEIGHT)
+    if (self.direction == 'right'):
+      x, y = randint(WIDTH + 5, WIDTH + 100), randint(0, HEIGHT)
+    if (self.direction == 'top'):
+      x, y = randint(0, WIDTH), randint(-100, -5)
+    if (self.direction == 'bottom'):
+      x, y = randint(0, WIDTH), randint(HEIGHT + 5, HEIGHT + 100)
+    self.rect.center = (x, y)
+  
+  def update(self):
+    if (self.direction == 'left'):
+      self.rect.centerx += 5
+    if (self.direction == 'right'):
+      self.rect.centerx -= 5
+    if (self.direction == 'top'):
+      self.rect.centery += 5
+    if (self.direction == 'bottom'):
+      self.rect.centery -= 5
 
+player = Player()
 all_sprites.add(player)
+
+# Utility Functions
+def spanw_aliens():
+  for i in range(50):
+    new_alien = Alien()
+    all_sprites.add(new_alien)
+
+spanw_aliens()
 
 # Game loop
 running = True
