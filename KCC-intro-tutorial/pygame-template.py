@@ -20,8 +20,17 @@ clock = pygame.time.Clock()
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
-GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+GREEN = (0, 255, 0)
+ORANGE = (255, 165, 0)
+MAGENTA = (255, 0, 255)
+OLIVE = (128, 128, 0)
+KHAKI = (240, 230, 140)
+TEAL = (0, 128, 128)
+SIENNA = (160, 83, 45)
+TAN = (210, 180, 140)
+INDIGO = (75, 0, 130)
 
 # Load all sprite images
 img_dir = path.join(path.dirname(__file__), 'img')
@@ -42,7 +51,7 @@ while running:
   all_sprites.update()
   
   # Draw / render
-  screen.fill(BLUE)
+  screen.fill(SIENNA)
   all_sprites.draw(screen)
 
   # AFTER drawing everything, flip the display
