@@ -4,6 +4,7 @@
 import pygame
 import random
 from os import path
+from math import radians
 
 # Initialise pygame and create window
 WIDTH = 360
@@ -38,7 +39,11 @@ img_dir = path.join(path.dirname(__file__), 'img')
 # Setup Sprites
 all_sprites = pygame.sprite.Group()
 
-# Game loop
+# Text
+font = pygame.font.Font(None, 36)
+text = font.render("Hi there!", 1, TEAL)
+
+# GAME LOOP
 running = True
 
 while running:
@@ -47,10 +52,10 @@ while running:
     if event.type == pygame.QUIT: # check for closing the window
       running = False
 
-  # Update
+  # UPDATE
   all_sprites.update()
   
-  # Draw / render
+  # DRAW / RENDER
   screen.fill(WHITE)
   ## Drawing Lined Paper
   # y = 20
@@ -81,10 +86,16 @@ while running:
   
   # pygame.draw.line(screen, RED, (25, 0), (25, HEIGHT))
 
-  # Drawing polygons
-  pygame.draw.rect(screen, RED, (100, 100, 200, 200), 5)
-  pygame.draw.ellipse(screen, SIENNA, (50, 10, 150, 50), 5)
-  pygame.draw.circle(screen, MAGENTA, (200, 300), 120)
+  # # Drawing polygons
+  # pygame.draw.rect(screen, RED, (100, 100, 200, 200), 5)
+  # pygame.draw.ellipse(screen, SIENNA, (50, 10, 150, 50), 5)
+  # pygame.draw.circle(screen, MAGENTA, (200, 300), 120)
+
+  # Drawing arcs
+  pygame.draw.arc(screen, BLUE, (100, 100, 100, 50),0, radians(270))
+
+  # Drawing text
+  screen.blit(text, (WIDTH / 2, HEIGHT / 2))
 
   # AFTER drawing everything, flip the display
   pygame.display.flip()
