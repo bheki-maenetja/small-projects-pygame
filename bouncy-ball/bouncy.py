@@ -8,7 +8,11 @@ from os import path
 # INITIALISE PYGAME AND CREATE WINDOW
 WIDTH = 360
 HEIGHT = 480
-FPS = 30
+FPS = 60
+x = 80
+y = 80
+dx = 10
+dy = 10
 
 pygame.init()
 pygame.mixer.init()
@@ -49,10 +53,18 @@ while running:
 
   # Update
   all_sprites.update()
+  x += dx
+  y += dy
+
+  if x + 25 > WIDTH or x - 25 < 0:
+    dx = -dx
+  if y + 25 > HEIGHT or y - 25 < 0:
+    dy = -dy
   
   # Draw / Render
-  screen.fill(SIENNA)
+  screen.fill(YELLOW)
   all_sprites.draw(screen)
+  pygame.draw.circle(screen, BLUE, (x,y), 25)
 
   # AFTER Drawing Everything, Flip the Display
   pygame.display.flip()
