@@ -13,6 +13,8 @@ x = 80
 y = 80
 dx = 10
 dy = 10
+player_x = 0
+player_y = 0
 
 pygame.init()
 pygame.mixer.init()
@@ -44,15 +46,14 @@ all_sprites = pygame.sprite.Group()
 
 # GAME LOOP
 running = True
-new_colour = YELLOW
+
 while running:
   # Process Input (events)
   for event in pygame.event.get():
     if event.type == pygame.QUIT: # check for closing the window
       running = False
-    if event.type == pygame.MOUSEBUTTONDOWN:
-      if 10 <= event.pos[0] <= 70 and 10 <= event.pos[1] <= 50:
-        new_colour = random.choice((BLUE, GREEN, YELLOW, SIENNA, ORANGE, TAN, INDIGO))
+    if event.type == pygame.MOUSEMOTION:
+      player_x, player_y = event.pos[0], event.pos[1]
 
   # Update
   all_sprites.update()
@@ -63,12 +64,12 @@ while running:
     dx = -dx
   if y + 25 > HEIGHT or y - 25 < 0:
     dy = -dy
-  
+
   # Draw / Render
-  screen.fill(new_colour)
+  screen.fill(YELLOW)
   all_sprites.draw(screen)
-  pygame.draw.circle(screen, TEAL, (x,y), 25)
-  pygame.draw.rect(screen, MAGENTA, (10, 10, 60, 40))
+  pygame.draw.circle(screen, RED, (x,y), 25)
+  pygame.draw.circle(screen, BLUE, (player_x, player_y), 20)
 
   # AFTER Drawing Everything, Flip the Display
   pygame.display.flip()
