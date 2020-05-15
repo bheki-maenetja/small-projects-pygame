@@ -38,6 +38,12 @@ img_dir = path.join(path.dirname(__file__), 'img')
 # SETUP SPRITES
 all_sprites = pygame.sprite.Group()
 
+# GAME VARIABLES
+
+# TEXT
+
+# UTILITY FUNCTIONS
+
 # GAME LOOP
 running = True
 
