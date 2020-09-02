@@ -14,6 +14,15 @@ Some small programs built with the pygame library and a few third-party packages
 - Pygame 2.0.0.dev6
 
 ## Projects
-
+### [KCC Intro](https://github.com/bheki-maenetja/small-projects-pygame/tree/master/KCC-intro-tutorial)
+ * Code for first few lessons of the Kids Can Code pygame tutorial
+### [KCC Shmup](https://github.com/bheki-maenetja/small-projects-pygame/tree/master/KCC-shmup-tutorial)
+ * Code for first few lessons of the Kids Can Code pygame tutorial on shoot-em-up (shmup) games
+### [Bouncy Ball](https://github.com/bheki-maenetja/small-projects-pygame/tree/master/bouncy-ball)
+ * A basic implementation of a bouncing ball in a box
+### [Real Python Tutorial](https://github.com/bheki-maenetja/small-projects-pygame/tree/master/real-python-tutorial)
+ * Code for the Real Python tutorial on pygame
+### [Rotation Demo](https://github.com/bheki-maenetja/small-projects-pygame/tree/master/rotation-demo)
+ * A bit of experimentation with rotating sprites
 
 
