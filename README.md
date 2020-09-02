@@ -1,2 +1,2 @@
-# small-projects-pygame
+# Small Pygame Projects
 A few small programs built with pygame
